@@ -26,7 +26,11 @@ class Map:
                     self.occupied.add((i, min_y))
                     self.obstacles.add((i, min_y))
             else:
-                for i in range(min_x, max_x + 1):
-                    self.occupied.add((i, min_y + i - min_x))
-                    self.obstacles.add((i, min_y + i - min_x))
-
+                if (min_x == start[0] and max_y == start[1]) or (min_x == end[0] and max_y == end[1]):
+                    for i in range(min_x, max_x + 1):
+                        self.occupied.add((i, max_y - i + min_x))
+                        self.obstacles.add((i, max_y - i + min_x))
+                else:
+                    for i in range(min_x, max_x + 1):
+                        self.occupied.add((i, min_y + i - min_x))
+                        self.obstacles.add((i, min_y + i - min_x))
